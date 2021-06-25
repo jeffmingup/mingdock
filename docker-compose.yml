@@ -1,0 +1,49 @@
+version: "3"
+
+networks:
+  backend:
+
+services: 
+
+    php:
+      build: ./php
+      volumes:
+        - ../:/var/www
+      expose:
+        - "9000"
+      networks:
+        - backend
+    
+    nginx:
+      build: ./nginx
+      volumes: 
+        - ./nginx/conf.d:/etc/nginx/conf.d
+        - ./nginx/log:/var/log/nginx
+        - ../:/var/www
+      ports:
+        - "80:80"
+        - "443:443"
+      networks:
+        - backend
+    
+    mysql:
+      build: ./mysql
+      environment:
+        - MYSQL_DATABASE=default
+        - MYSQL_ROOT_PASSWORD=root
+        - TZ=Asia/Shanghai
+      volumes: 
+        - "~/.mingdock/mysql:/var/lib/mysql"
+      ports:
+        - "3306:3306"
+      networks: 
+        - backend
+
+    redis:
+      build: ./redis
+      volumes:
+        - "~/.mingdock/redis:/data"
+      ports:
+        - "6379:6379"
+      networks: 
+        - backend
