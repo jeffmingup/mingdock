@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y git unzip vim\
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
-    install-php-extensions yaml mongodb
+    install-php-extensions yaml mongodb gd
 
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
