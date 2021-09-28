@@ -1,4 +1,3 @@
-ARG MARIADB_VERSION=latest
 FROM mariadb:latest
 
 LABEL maintainer="Mahmoud Zalt <mahmoud@zalt.me>"

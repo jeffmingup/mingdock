@@ -95,7 +95,6 @@ services:
           - http_proxy
           - https_proxy
           - no_proxy
-          - MARIADB_VERSION=${MARIADB_VERSION}
       volumes:
         - ~/.mingdock/mariadb:/var/lib/mysql
         - ./mariadb/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
